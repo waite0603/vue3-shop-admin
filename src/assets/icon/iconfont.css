@@ -1,0 +1,127 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3894039 */
+  src: url('iconfont.woff2?t=1676295458652') format('woff2'),
+       url('iconfont.woff?t=1676295458652') format('woff'),
+       url('iconfont.ttf?t=1676295458652') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tengxunweibo:before {
+  content: "\e694";
+}
+
+.icon-renren:before {
+  content: "\e695";
+}
+
+.icon-youxiang:before {
+  content: "\e696";
+}
+
+.icon-weixin:before {
+  content: "\e697";
+}
+
+.icon-zhifubao:before {
+  content: "\e698";
+}
+
+.icon-Facebook:before {
+  content: "\e699";
+}
+
+.icon-linkedin:before {
+  content: "\e69a";
+}
+
+.icon-Instagram:before {
+  content: "\e69b";
+}
+
+.icon-pinterest:before {
+  content: "\e69c";
+}
+
+.icon-qqkongjian:before {
+  content: "\e69d";
+}
+
+.icon-reddit:before {
+  content: "\e69e";
+}
+
+.icon-tumblr:before {
+  content: "\e69f";
+}
+
+.icon-zhihu:before {
+  content: "\e6a0";
+}
+
+.icon-youku:before {
+  content: "\e6a1";
+}
+
+.icon-twitter:before {
+  content: "\e6a2";
+}
+
+.icon-path:before {
+  content: "\e6a3";
+}
+
+.icon-youdaoyunbiji:before {
+  content: "\e6a4";
+}
+
+.icon-snapchat:before {
+  content: "\e6a5";
+}
+
+.icon-xinlangweibo:before {
+  content: "\e6a6";
+}
+
+.icon-qq:before {
+  content: "\e6a7";
+}
+
+.icon-whatsapp:before {
+  content: "\e6a8";
+}
+
+.icon-pengyouquan:before {
+  content: "\e6a9";
+}
+
+.icon-dazhongdianping:before {
+  content: "\e691";
+}
+
+.icon-douban:before {
+  content: "\e692";
+}
+
+.icon-taobao:before {
+  content: "\e693";
+}
+
+.icon-icon_baidu:before {
+  content: "\e600";
+}
+
+.icon-icon_bilibili:before {
+  content: "\e601";
+}
+
+.icon-icon_github:before {
+  content: "\e602";
+}
+

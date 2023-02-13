@@ -7,7 +7,10 @@
           基于Vue3 + ElementPlus + Vite实战开发商城后台管理系统
         </h3>
         <div class="mt-7 text-right pr-5">
-          <el-link type="primary" class="text-white" @click="JumpToGithub">Github</el-link>
+          <el-link type="primary" class="text-white" @click="JumpToGithub">
+            <i class="iconfont icon-icon_github mr-1"></i>
+            Github
+          </el-link>
         </div>
       </div>
     </el-col>
@@ -20,10 +23,22 @@
       </div>
       <el-form :model="form" class="w-2/4">
         <el-form-item>
-          <el-input v-model="form.username" placeholder="请输入用户名" />
+          <el-input v-model="form.username" placeholder="请输入用户名">
+            <template #prefix>
+              <el-icon>
+                <User />
+              </el-icon>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.password" placeholder="请输入密码" />
+          <el-input v-model="form.password" placeholder="请输入密码">
+            <template #prefix>
+              <el-icon>
+                <Lock />
+              </el-icon>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item>
           <el-button round color="#2563eb " class="w-full" type="primary" @click="onSubmit">登 录</el-button>
@@ -36,6 +51,7 @@
 
 <script setup>
 import { reactive } from 'vue'
+import { User, Lock } from '@element-plus/icons-vue'
 
 // do not use same name with ref
 const form = reactive({
