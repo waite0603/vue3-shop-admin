@@ -1,9 +1,12 @@
-import axios from '~/axios';
+import axios from '~/axios'
 
-// 通过 export 导出
-export const login = (username, password) => {
-    return axios.post('/admin/login', {
+export function login(username,password){
+    return axios.post("/admin/login",{
         username,
         password
-    });
-};
+    })
+}
+
+export function getinfo(){
+    return axios.post("/admin/getinfo")
+}

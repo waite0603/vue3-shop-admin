@@ -41,7 +41,7 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button round color="#2563eb " class="w-full" type="primary" @click="onSubmit">登 录</el-button>
+          <el-button round color="#2563eb " class="w-full" type="primary" :loading="loading" @click="onSubmit" >登 录</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -53,12 +53,13 @@
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus'
-import { login } from '~/api/manager'
+import { login, getinfo } from '~/api/manager'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const cookies = useCookies()
+
 // do not use same name with ref
 const form = reactive({
   username: "",
@@ -82,40 +83,41 @@ const rules = {
   ]
 }
 
-
 const formRef = ref(null)
+const loading = ref(false)  
+
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) {
       return false
     }
+
+    loading.value = true
     login(form.username, form.password)
       .then(
         res => {
-          console.log(res.data.data)
-
           // set token
-          useCookies().set('admin-token', res.data.data.token)
+          cookies.set('admin-token', res.token)
           // prompt success
           ElNotification({
             message: '登录成功',
             type: 'success',
           })
 
+          getinfo().then(
+            res2 => {
+              // set user info
+              console.log(res2)
+            }
+          )
+          
           // jump to home page
           router.push('/')
         }
       )
-      .catch(
-        err => {
-          ElNotification({
-            message: err.response.data.msg || '登录失败',
-            type: 'error',
-            duration: 1500
-          })
-        }
-      )
-
+      .finally(() => {
+        loading.value = false
+      })
   })
 }
 
