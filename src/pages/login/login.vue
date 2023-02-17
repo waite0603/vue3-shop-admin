@@ -52,19 +52,18 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus'
+import { toast } from '~/composables/util'
 import { login, getinfo } from '~/api/manager'
-import { useCookies } from '@vueuse/integrations/useCookies'
 import { useRouter } from 'vue-router'
+import { setToken } from '~/composables/auth'
 
-const router = useRouter()
-const cookies = useCookies()
+const router = useRouter();
 
 // do not use same name with ref
 const form = reactive({
   username: "",
   password: ""
-})
+});
 
 const rules = {
   username: [
@@ -81,42 +80,39 @@ const rules = {
       trigger: 'blur'
     },
   ]
-}
+};
 
-const formRef = ref(null)
-const loading = ref(false)  
+const formRef = ref(null);
+const loading = ref(false);
 
 const onSubmit = () => {
   formRef.value.validate((valid) => {
     if (!valid) {
-      return false
+      return false;
     }
 
-    loading.value = true
+    loading.value = true;
     login(form.username, form.password)
       .then(
         res => {
           // set token
-          cookies.set('admin-token', res.token)
+          setToken(res.token);
           // prompt success
-          ElNotification({
-            message: '登录成功',
-            type: 'success',
-          })
+          toast('登录成功');
 
           getinfo().then(
             res2 => {
               // set user info
-              console.log(res2)
+              console.log(res2);
             }
-          )
+          );
           
           // jump to home page
-          router.push('/')
+          router.push('/');
         }
       )
       .finally(() => {
-        loading.value = false
+        loading.value = false;
       })
   })
 }
