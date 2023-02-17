@@ -54,10 +54,11 @@ import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus'
 import { login } from '~/api/manager'
-
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { useRouter } from 'vue-router'
-const router = useRouter()
 
+const router = useRouter()
+const cookies = useCookies()
 // do not use same name with ref
 const form = reactive({
   username: "",
@@ -94,7 +95,7 @@ const onSubmit = () => {
           console.log(res.data.data)
 
           // set token
-
+          useCookies().set('admin-token', res.data.data.token)
           // prompt success
           ElNotification({
             message: '登录成功',

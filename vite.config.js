@@ -17,6 +17,7 @@ export default defineConfig({
     WindiCSS()
   ],
   server: {
+    cors: true,
     proxy: {
       '/api': {
         target: 'https://ceshi13.dishait.cn',
@@ -24,5 +25,10 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
+  },
+  build: {
+    sourcemap: false,
+    // 消除打包大小超过500kb警告
+    chunkSizeWarningLimit: 4000
   },
 })
