@@ -18,6 +18,11 @@ export default defineConfig({
   ],
   server: {
     cors: true,
+    // 是否为 https 接口
+    secure: true,
+    port: 3000,
+    open: false,
+    hot: true,  
     proxy: {
       '/api': {
         target: 'https://ceshi13.dishait.cn',

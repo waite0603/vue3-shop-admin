@@ -56,6 +56,9 @@ import { toast } from '~/composables/util'
 import { login, getinfo } from '~/api/manager'
 import { useRouter } from 'vue-router'
 import { setToken } from '~/composables/auth'
+import { useStore } from 'vuex'
+
+const store = useStore();
 
 const router = useRouter();
 
@@ -103,6 +106,7 @@ const onSubmit = () => {
           getinfo().then(
             res2 => {
               // set user info
+              store.commit('SET_USER_INFO', res2);
               console.log(res2);
             }
           );
