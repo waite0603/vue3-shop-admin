@@ -4,6 +4,7 @@ import ElementPlus from 'element-plus'
 import store from './store'
 import 'element-plus/dist/index.css'
 import 'virtual:windi.css'
+import "./permission"
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import './assets/icon/iconfont.css'
