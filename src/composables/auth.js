@@ -10,7 +10,9 @@ export function getToken() {
 
 // 设置token
 export function setToken(token) {
-    return cookies.set(TokenKey, token);
+    // token 有效期为 60 分钟
+    const expires = new Date(Date.now() + 60 * 60 * 1000);
+    cookies.set(TokenKey, token, { expires });
 }
 
 // 移除token

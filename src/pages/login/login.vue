@@ -41,11 +41,12 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button round color="#2563eb " class="w-full" type="primary" :loading="loading" @click="onSubmit" >登 录</el-button>
+          <el-button round color="#2563eb " class="w-full" type="primary" :loading="loading" @click="onSubmit">登
+            录</el-button>
         </el-form-item>
       </el-form>
     </el-col>
-</el-row>
+  </el-row>
 </template>
 
 
@@ -53,13 +54,10 @@
 import { reactive, ref } from 'vue'
 import { User, Lock } from '@element-plus/icons-vue'
 import { toast } from '~/composables/util'
-import { login, getinfo } from '~/api/manager'
 import { useRouter } from 'vue-router'
-import { setToken } from '~/composables/auth'
 import { useStore } from 'vuex'
 
 const store = useStore();
-
 const router = useRouter();
 
 // do not use same name with ref
@@ -89,36 +87,19 @@ const formRef = ref(null);
 const loading = ref(false);
 
 const onSubmit = () => {
-  formRef.value.validate((valid) => {
-    if (!valid) {
-      return false;
-    }
-
-    loading.value = true;
-    login(form.username, form.password)
-      .then(
-        res => {
-          // set token
-          setToken(res.token);
-          // prompt success
-          toast('登录成功');
-
-          getinfo().then(
-            res2 => {
-              // set user info
-              store.commit('SET_USER_INFO', res2);
-              console.log(res2);
-            }
-          );
-          
-          // jump to home page
-          router.push('/');
+    formRef.value.validate((valid)=>{
+        if(!valid){
+            return false
         }
-      )
-      .finally(() => {
-        loading.value = false;
-      })
-  })
+        loading.value = true
+        
+        store.dispatch("login",form).then(res=>{
+            toast("登录成功")
+            router.push("/")
+        }).finally(()=>{
+            loading.value = false
+        })
+    })
 }
 
 
